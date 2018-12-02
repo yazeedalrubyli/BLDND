@@ -24,11 +24,9 @@ Navigate to this folder after cloning it. Than issue 'npm install'
 
 ### Running 
 
-To run the script
-
 To run the API
 ```
-> npm run api
+> npm start
 ```
 
 ### Available Endpoints
