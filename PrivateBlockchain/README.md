@@ -22,8 +22,44 @@ Navigate to this folder after cloning it. Than issue 'npm install'
 > npm install
 ```
 
-Then, run the script by running the following command
+### Running 
+
+To run the script
 
 ```
 > npm start
 ```
+
+To run the API
+```
+> npm start
+```
+
+#### Available Endpoints
+
+Get Block Info
+
+```
+Example: Get block[1] info
+GET: http://localhost:8000/block/1
+```
+
+Get Block Info
+
+```
+Example: Adding Block to the Blockchain
+POST: http://localhost:8000/block
+
+Data:
+{
+      "body": "ADD-BLOCK"
+}
+```
+
+Validate the Blockchain
+
+```
+Example: Validating the Blockchain
+GET: http://localhost:8000/validate
+```
+

@@ -1,6 +1,5 @@
 const Block = require("./Block.js");
 const Blockchain = require("./Blockchain.js");
-const DB = require("./DB.js");
 
 
 let blockchain = new Blockchain();
@@ -13,8 +12,9 @@ getChain();
 (function theLoop(i) {
     setTimeout(async function() {
         let blockTest = new Block("Test Block - " + (blockchain.chain.length));
-        await blockchain.addBlock(blockTest);
+        let added_block = await blockchain.addBlock(blockTest);
+        console.log(added_block)
         i++;
-        (i < 10)?theLoop(i):blockchain.validateChain();
+        (i < 10)?theLoop(i):console.log(await blockchain.validateChain());
     }, 1000);
 })(0);

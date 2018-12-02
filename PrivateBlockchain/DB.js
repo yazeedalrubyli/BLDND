@@ -6,14 +6,11 @@ const chainDB = './chain';
 const db = level(chainDB, {valueEncoding: 'json'});
 
 class DB{
-	// constructor{
-
-	// }
 
 	// Add data to levelDB with key/value pair
 	addData(key, value) {
 		return new Promise((resolve, reject) => {
-	        db.put(key, JSON.stringify(value), function(err) {
+	        db.put(key, value, function(err) {
 	            if (err) reject(err);
 	            resolve(value);
 	        });
@@ -25,7 +22,7 @@ class DB{
 	    return new Promise((resolve, reject) => {
 	        db.get(key, function(err, value) {
 	            if (err) reject(err);
-	            resolve(JSON.parse(value));
+	            resolve(value);
 	        });
 	    });
 	}

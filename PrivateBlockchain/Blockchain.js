@@ -27,13 +27,13 @@ class Blockchain {
 
         let block = await this.db.addData(newBlock.height,newBlock);
         this.chain.push(block);
-        console.log(block);
+        return block;
     }
 
     // get block by Height
     async getBlock(blockHeight){
-    	let block = await this.db.getSingleData(blockHeight);
-    	return block;
+        let block = await this.db.getSingleData(blockHeight);
+        return block;	
     }
 
     // get the chain
@@ -77,16 +77,14 @@ class Blockchain {
             // compare blocks hash link
             let blockHash = this.chain[i].hash;
             let previousHash = this.chain[i + 1].previousBlockHash;
-            console.log(this.chain[i].height+"\n"+this.chain[i + 1].height+"\n=============\n");
             if (blockHash !== previousHash) {
                 errorLog.push(i);
             }
         }
         if (errorLog.length > 0) {
-            console.log('Block errors = ' + errorLog.length);
-            console.log('Blocks: ' + errorLog);
+            return ('Block errors = ', errorLog.length, '\nBlocks: ', errorLog);
         } else {
-            console.log('No errors detected');
+            return 'No errors detected';
         }
     }
 }
