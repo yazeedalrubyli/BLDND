@@ -29,7 +29,7 @@ class DB{
 
 	// get all data
     getDataCount() {
-    let i = [];
+    let i = 0;
     return new Promise((resolve, reject) => {
 	    db.createReadStream().on('data', function(data) {
 	            i++;

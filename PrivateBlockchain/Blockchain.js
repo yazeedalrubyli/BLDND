@@ -27,6 +27,7 @@ class Blockchain {
 
         let block = await this.db.addData(newBlock.height,newBlock);
         this.chain.push(block);
+        console.log(block);
         return block;
     }
 
@@ -39,13 +40,13 @@ class Blockchain {
     // get the chain
     async getChain(){
     	let height = await this.db.getDataCount();
-    	for (var i = 0; i < height; i++) {
-    		let block = await this.getBlock(i);
-    		this.chain.push(block);
-    	}
-    	
-    	if (this.chain.length == 0) {
-        	this.addBlock(new Block("First block in the chain - Genesis block"));
+        if (height == 0) {
+            await this.addBlock(new Block("First block in the chain - Genesis block"));
+        } else {
+            for (var i = 0; i < height; i++) {
+                let block = await this.getBlock(i);
+                this.chain.push(block);
+            }
         }
     }
 

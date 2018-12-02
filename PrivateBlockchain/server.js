@@ -1,16 +1,16 @@
 const Hapi=require('hapi');
+const Joi=require('joi');
+const Boom = require('boom')
 const Block = require("./Block.js");
 const Blockchain = require("./Blockchain.js");
 
 let blockchain = new Blockchain();
 
-let getChain = async() =>{
+var getChain = async() => {
     await blockchain.getChain();
 }
 
 getChain();
-
-
 // Create a server with a host and port
 const server=Hapi.server({
     host:'localhost',
@@ -26,7 +26,7 @@ server.route({
             let block = await blockchain.getBlock(request.params.block_height);
             return block;
         } catch(e){
-            return (`Block[${request.params.block_height}] not found in the Blockchain`);
+            throw Boom.notFound(`Block[${request.params.block_height}] not found in the Blockchain`);
         }
         
     }
@@ -40,6 +40,13 @@ server.route({
         let block = new Block(request.payload.body);
         let added_block = await blockchain.addBlock(block);
         return added_block;
+    },
+    options: {
+        validate: {
+            payload: {
+                body: Joi.string().required()
+            }
+        }
     }
 });
 
@@ -48,13 +55,12 @@ server.route({
     method:'GET',
     path:'/validate',
     handler:async function(request,h) {
-        return blockchain.validateChain();
+        return {"Status":`${await blockchain.validateChain()}`};
     }
 });
 
 // Start the server
 async function start() {
-
     try {
         await server.start();
         console.log(`Server running at: ${server.info.uri}`);

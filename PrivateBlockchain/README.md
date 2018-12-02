@@ -1,6 +1,6 @@
 # Private Blockchain
 
-Create a private blockchain to demonstrate what I learned about blockchain and transaction data models as well as the differences between public and private blockchains.
+Create a private blockchain web service using '[hapi](http://hapijs.com)' framework to demonstrate what I learned about blockchain and transaction data models as well as the differences between public and private blockchains.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You need Nodejs >= 10 and npm >= 6
+You need Nodejs >= 10.x, npm >= 6.x, Hapi.js >= 17.x
 
 ```
 Please Visit https://nodejs.org/en/download for details.
