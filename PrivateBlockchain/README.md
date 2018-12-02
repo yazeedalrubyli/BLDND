@@ -26,16 +26,12 @@ Navigate to this folder after cloning it. Than issue 'npm install'
 
 To run the script
 
-```
-> npm start
-```
-
 To run the API
 ```
-> npm start
+> npm run api
 ```
 
-#### Available Endpoints
+### Available Endpoints
 
 Get Block Info
 

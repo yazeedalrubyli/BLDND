@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "scripts": {
-    "start": "node main.js",
-    "api":"node api.js"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
