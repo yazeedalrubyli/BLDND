@@ -38,7 +38,7 @@ Example: Get block[1] info
 GET: http://localhost:8000/block/1
 ```
 
-Get Block Info
+Add New Block
 
 ```
 Example: Adding Block to the Blockchain
