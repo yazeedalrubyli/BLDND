@@ -31,7 +31,7 @@ To run the API
 
 ### Available Endpoints
 
-Validate Request
+**Validate Request**
 
 ```
 POST: http://localhost:8000/requestValidation
@@ -39,7 +39,7 @@ POST: http://localhost:8000/requestValidation
 { "address":"19xaiMqayaNrn3x7AjV5cU4Mk5f5prRVpL" }
 ```
 
-Validate Message
+**Validate Message**
 
 ```
 POST: http://localhost:8000/validateMessage
@@ -50,7 +50,7 @@ POST: http://localhost:8000/validateMessage
 }
 ```
 
-Add New Star
+**Add New Star**
 
 ```
 Example: Adding Star to the Blockchain
@@ -66,28 +66,28 @@ POST: http://localhost:8000/addStar
 }
 ```
 
-Get Block by Hash
+**Get Block by Hash**
 
 ```
 Example: Get block by hash X
 GET: http://localhost:8000/stars/hash:X
 ```
 
-Get Block by Wallet Address
+**Get Block by Wallet Address**
 
 ```
 Example: Get all blocks belong to wallet address X
 GET: http://localhost:8000/stars/address:X
 ```
 
-* Get Block by Height *
+**Get Block by Height**
 
 ```
 Example: Get block[1] info
 GET: http://localhost:8000/block/1
 ```
 
-Validate the Blockchain
+**Validate the Blockchain**
 
 ```
 Example: Validating the Blockchain
