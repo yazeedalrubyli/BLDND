@@ -80,7 +80,7 @@ Example: Get all blocks belong to wallet address X
 GET: http://localhost:8000/stars/address:X
 ```
 
-Get Block by Height
+* Get Block by Height *
 
 ```
 Example: Get block[1] info
