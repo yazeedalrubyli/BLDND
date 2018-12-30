@@ -1,6 +1,6 @@
-# Private Blockchain
+# Private Blockchain Notary Service
 
-Create a private blockchain web service using '[hapi](http://hapijs.com)' framework to demonstrate what I learned about blockchain and transaction data models as well as the differences between public and private blockchains.
+Create a private blockchain notary service using '[hapi](http://hapijs.com)' framework to demonstrate what I learned about blockchain and transaction data models as well as the differences between public and private blockchains.
 
 ## Getting Started
 
