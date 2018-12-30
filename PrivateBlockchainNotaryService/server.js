@@ -11,7 +11,7 @@ let blockchain = new Blockchain();
 let memPool = new MemPool();
 let msg = new Message();
 
-var getChain = async() => {
+let getChain = async() => {
     await blockchain.getChain();
 }
 
@@ -46,7 +46,7 @@ server.route({
 // Validate Message Signature
 server.route({
     method:'POST',
-    path:'/validateMessage',
+    path:'/message-signature/validate',
     handler:async function(request,h) {
         try{
             let address = request.payload.address;
@@ -101,15 +101,23 @@ server.route({
 // Add Star to the Blockchain
 server.route({
     method:'POST',
-    path:'/addStar',
+    path:'/block',
     handler: async function(request,h) {
         try{
             let address = request.payload.address;
             if (memPool.mempoolValid.has(address)){
                 let starStory = request.payload.star.story;
+                
+                for (var i = 0; i < starStory.length; i++){
+                    if (starStory.charCodeAt(i) > 127){
+                        return Boom.badRequest('Non-ASCII Characters');
+                    }
+                }
+                        
                 if (starStory.split(' ').length > 250){
                     return Boom.badRequest('Star story max words = 250');
                 }
+
                 request.payload.star.story = Buffer.from(starStory).toString('hex');
                 let block = new Block(request.payload);
                 let added_block = await blockchain.addBlock(block);
@@ -128,11 +136,9 @@ server.route({
             payload: {
                 address: Joi.string().required(),
                 star: {
-                    dec: Joi.string(),
-                    ra: Joi.string(),
-                    mag: Joi.string(),
-                    cen: Joi.string(),
-                    story: Joi.string()
+                    dec: Joi.string().required(),
+                    ra: Joi.string().required(),
+                    story: Joi.string().required()
                 }
             }
         }
