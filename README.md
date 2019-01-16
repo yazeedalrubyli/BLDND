@@ -1,1 +1,1 @@
-# Blockchain Developer Nanodegree [![Udacity - Blockchain Developer Nanodegree](blockchain.svg)](https://www.udacity.com/blockchain)
+# Blockchain Developer Nanodegree [![Udacity - Blockchain Developer Nanodegree](https://bit.ly/2svzNOI)](https://www.udacity.com/blockchain){:target="_blank"}
