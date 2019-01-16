@@ -1,4 +1,4 @@
-# Private Blockchain
+# Private Blockchain [![Udacity - Blockchain Developer Nanodegree](https://bit.ly/2svzNOI)](https://www.udacity.com/blockchain)
 
 Create a private blockchain web service using '[hapi](http://hapijs.com)' framework to demonstrate what I learned about blockchain and transaction data models as well as the differences between public and private blockchains.
 
