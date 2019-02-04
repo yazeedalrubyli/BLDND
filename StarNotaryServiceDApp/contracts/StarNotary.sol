@@ -45,15 +45,12 @@ contract StarNotary is ERC721Full {
         }
     }
 
-        // Implement Task 1 lookUptokenIdToStarInfo
     function lookUptokenIdToStarInfo (uint _tokenId) public view returns (string memory) {
-        //1. You should return the Star saved in tokenIdToStarInfo mapping
         return tokenIdToStarInfo[_tokenId].name;
     }
 
-    // Implement Task 1 Exchange Stars function
     function exchangeStars(uint256 _tokenId1, uint256 _tokenId2) public {
-        require(ownerOf(_tokenId1) == msg.sender || ownerOf(_tokenId2) == msg.sender, "You can't exchange the Star you don't own");
+        require(ownerOf(_tokenId1) == msg.sender || ownerOf(_tokenId2) == msg.sender, "You can't exchange a Star you don't own");
 
         address owner1 = ownerOf(_tokenId1);
         address owner2 = ownerOf(_tokenId2);
@@ -62,10 +59,7 @@ contract StarNotary is ERC721Full {
         _transferFrom(owner2, owner1, _tokenId2);
     }
 
-    // Implement Task 1 Transfer Stars
     function transferStar(address _to1, uint256 _tokenId) public {
-        require(ownerOf(_tokenId) == msg.sender, "");
-        _transferFrom(msg.sender, _to1, _tokenId);
-
+        transferFrom(msg.sender, _to1, _tokenId);
     }
 }

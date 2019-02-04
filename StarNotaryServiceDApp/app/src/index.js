@@ -26,8 +26,8 @@ const App = {
     }
   },
 
-  setStatus: function(message) {
-    const status = document.getElementById("status");
+  setStatus: function(message, elementId) {
+    const status = document.getElementById(elementId);
     status.innerHTML = message;
   },
 
@@ -36,17 +36,42 @@ const App = {
     const name = document.getElementById("starName").value;
     const id = document.getElementById("starId").value;
     await createStar(name, id).send({from: this.account});
-    App.setStatus("New Star Owner is " + this.account + ".");
+    App.setStatus("New Star Owner is " + this.account + "", "createStarStatus");
   },
 
-  // Implement Task 4 Modify the front end of the DAPP
   lookUp: async function (){
-    const { lookUptokenIdToStarInfo } = this.meta.methods;
+    const { lookUptokenIdToStarInfo, ownerOf } = this.meta.methods;
     const id = document.getElementById("lookid").value;
     let name = await lookUptokenIdToStarInfo(id).call();
-    App.setStatus("Star Name: " + name); 
-  }
+    App.setStatus(  "Star: " + name 
+                  + "<br>Owner: " + await ownerOf(id).call(),
+                  "lookUpStatus"); 
+  },
 
+  exchangeStar: async function (){
+    const { exchangeStars, ownerOf } = this.meta.methods;
+    const id1 = document.getElementById("starIdEx1").value;
+    const id2 = document.getElementById("starIdEx2").value;
+    await exchangeStars(id1, id2).send({from: this.account});
+    App.setStatus(  "Star: " + id1 
+                  + "<br>Owner: " + await ownerOf(id1).call()
+                  + "<br>--------------------------------------"
+                  + "<br>Star: " + id2 
+                  + "<br>Owner: " + await ownerOf(id2).call(), 
+                  "exchangeStarStatus"); 
+  },
+
+  transferStar: async function (){
+    const { transferStar, lookUptokenIdToStarInfo, ownerOf } = this.meta.methods;
+    const id = document.getElementById("starIdTrans").value;
+    const addr = document.getElementById("toAddr").value;
+    await transferStar(addr,id).send({from: this.account});
+    let name = await lookUptokenIdToStarInfo(id).call();
+    App.setStatus(  "Star: " + name 
+                  + "<br>From: " + this.account
+                  + "<br>To: " + await ownerOf(id).call(),
+                  "transferStarStatus");
+  }
 };
 
 window.App = App;
